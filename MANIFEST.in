@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include cleartax_integration *.css
+recursive-include cleartax_integration *.csv
+recursive-include cleartax_integration *.html
+recursive-include cleartax_integration *.ico
+recursive-include cleartax_integration *.js
+recursive-include cleartax_integration *.json
+recursive-include cleartax_integration *.md
+recursive-include cleartax_integration *.png
+recursive-include cleartax_integration *.py
+recursive-include cleartax_integration *.svg
+recursive-include cleartax_integration *.txt
+recursive-exclude cleartax_integration *.pyc
