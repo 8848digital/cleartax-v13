@@ -29,7 +29,37 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Delivery Note": "public/js/delivery_note_doctype.js",
+    "Sales Invoice": "public/js/sales_invoice_doctype.js",
+    "Purchase Invoice" : "public/js/purchase_invoice_doctype.js"
+    }
+
+doctype_list_js = {
+    "Sales Invoice": "public/js/sales_invoice_list.js",
+    "Purchase Invoice": "public/js/purchase_invoice_list.js",
+    "Delivery Note": "public/js/delivery_note_list.js"
+}
+
+doc_events = {
+    "Delivery Note": {
+        "before_submit": "cleartax_integration.public.py.delivery_note_doctype.delivery_note_submit",
+        "before_save": "cleartax_integration.public.py.delivery_note_doctype.delivery_note_save",
+        "before_cancel": "cleartax_integration.public.py.delivery_note_doctype.delivery_note_cancel"
+    },
+     "Purchase Invoice": {
+        "before_submit": "cleartax_integration.public.py.purchase_invoice_doctype.purchase_invoice_submit",
+        "before_cancel": "cleartax_integration.public.py.purchase_invoice_doctype.purchase_invoice_cancel",
+        "before_save": "cleartax_integration.public.py.purchase_invoice_doctype.purchase_invoice_save"
+    },
+    "Sales Invoice": {
+        "before_submit":"cleartax_integration.public.py.sales_invoice_doctype.sales_invoice_submit",
+        "before_cancel": "cleartax_integration.public.py.sales_invoice_doctype.sales_invoice_cancel",
+        "before_save": "cleartax_integration.public.py.sales_invoice_doctype.sales_invoice_save"
+    }
+}
+
+
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
