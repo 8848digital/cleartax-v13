@@ -1,5 +1,5 @@
 import frappe
-from india_compliance.cleartax_integration.utils import success_response, error_response, response_error_handling, response_logger,get_dict
+from cleartax_integration.cleartax_integration.utils import success_response, error_response, response_error_handling, response_logger,get_dict
 from frappe import *
 import json
 import requests
@@ -381,7 +381,7 @@ def bulk_ewb(**kwargs):
     try:
         data = json.loads(kwargs.get('data'))
         for i in data:
-            frappe.enqueue("india_compliance.cleartax_integration.API.ewb.generate_e_waybill_by_irn",**{'invoice':i})
+            frappe.enqueue("cleartax_integration.cleartax_integration.API.ewb.generate_e_waybill_by_irn",**{'invoice':i})
     except Exception as e:
         frappe.logger('sfa_online').exception(e)
 
@@ -390,7 +390,7 @@ def bulk_ewb_dn(**kwargs):
     try:
         data = json.loads(kwargs.get('data'))
         for i in data:
-            frappe.enqueue("india_compliance.cleartax_integration.API.ewb.ewb_without_irn",**{'delivery_note':i})
+            frappe.enqueue("cleartax_integration.cleartax_integration.API.ewb.ewb_without_irn",**{'delivery_note':i})
     except Exception as e:
         frappe.logger('sfa_online').exception(e)
 

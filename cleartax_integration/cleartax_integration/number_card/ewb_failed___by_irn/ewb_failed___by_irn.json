@@ -10,7 +10,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Ewb Failed - By IRN",
- "method": "india_compliance.cleartax_integration.doctype.cleartax_settings.cleartax_settings.ewb_irn_failed",
+ "method": "cleartax_integration.cleartax_integration.doctype.cleartax_settings.cleartax_settings.ewb_irn_failed",
  "modified": "2022-12-03 15:36:31.560560",
  "modified_by": "Administrator",
  "module": "Cleartax Integration",

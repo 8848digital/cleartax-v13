@@ -14,7 +14,7 @@ frappe.ui.form.on('Delivery Note', {
 		if (enabled == 1) {
 			cur_frm.add_custom_button(__("E-Way Bill"), function () {
 				frappe.call({
-					method: "india_compliance.cleartax_integration.API.ewb.ewb_without_irn",
+					method: "cleartax_integration.cleartax_integration.API.ewb.ewb_without_irn",
 					args: {
 						delivery_note: frm.selected_doc.name
 					},
@@ -53,7 +53,7 @@ frappe.ui.form.on('Delivery Note', {
 						primary_action(values) {
 
 							frappe.call({
-								method: "india_compliance.cleartax_integration.API.ewb.update_ewb_partb",
+								method: "cleartax_integration.cleartax_integration.API.ewb.update_ewb_partb",
 								args: {
 									data: values,
 									delivery_note: frm.selected_doc.name
@@ -96,7 +96,7 @@ frappe.ui.form.on('Delivery Note', {
 					primary_action(values) {
 
 						frappe.call({
-							method: "india_compliance.cleartax_integration.API.ewb.cancel_ewb_dn",
+							method: "cleartax_integration.cleartax_integration.API.ewb.cancel_ewb_dn",
 							args: {
 								data: values,
 								delivery_note: frm.selected_doc.name

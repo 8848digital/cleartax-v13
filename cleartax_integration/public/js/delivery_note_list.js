@@ -10,7 +10,7 @@ frappe.listview_settings["Delivery Note"].onload = function (list_view) {
                 selected.push(check.dataset.name);
             }
             frappe.call({
-                method: "india_compliance.cleartax_integration.API.ewb.bulk_ewb_dn",
+                method: "cleartax_integration.cleartax_integration.API.ewb.bulk_ewb_dn",
                 args: {
                     data: selected
                 },

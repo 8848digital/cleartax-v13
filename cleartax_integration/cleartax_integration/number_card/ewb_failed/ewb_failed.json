@@ -10,7 +10,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Ewb Failed",
- "method": "india_compliance.cleartax_integration.doctype.cleartax_settings.cleartax_settings.ewb_failed",
+ "method": "cleartax_integration.cleartax_integration.doctype.cleartax_settings.cleartax_settings.ewb_failed",
  "modified": "2022-12-03 15:41:58.375554",
  "modified_by": "Administrator",
  "module": "Cleartax Integration",

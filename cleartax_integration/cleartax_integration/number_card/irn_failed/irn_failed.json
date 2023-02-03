@@ -10,7 +10,7 @@
  "is_public": 0,
  "is_standard": 1,
  "label": "IRN Failed",
- "method": "india_compliance.cleartax_integration.doctype.cleartax_settings.cleartax_settings.irn_failed",
+ "method": "cleartax_integration.cleartax_integration.doctype.cleartax_settings.cleartax_settings.irn_failed",
  "modified": "2022-12-03 15:28:50.611843",
  "modified_by": "Administrator",
  "module": "Cleartax Integration",

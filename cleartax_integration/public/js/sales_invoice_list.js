@@ -10,7 +10,7 @@ frappe.listview_settings["Sales Invoice"].onload = function (list_view) {
             selected.push(check.dataset.name);
         }
         frappe.call({
-            method: "india_compliance.cleartax_integration.API.irn.bulk_irn",
+            method: "cleartax_integration.cleartax_integration.API.irn.bulk_irn",
             args: {
                 data: selected
             },
@@ -29,7 +29,7 @@ frappe.listview_settings["Sales Invoice"].onload = function (list_view) {
             selected.push(check.dataset.name);
         }
         frappe.call({
-            method: "india_compliance.cleartax_integration.API.ewb.bulk_ewb",
+            method: "cleartax_integration.cleartax_integration.API.ewb.bulk_ewb",
             args: {
                 data: selected
             },

@@ -1,6 +1,6 @@
 import frappe
 from frappe import *
-from india_compliance.cleartax_integration.utils import success_response, error_response, response_error_handling, response_logger, get_dict
+from cleartax_integration.cleartax_integration.utils import success_response, error_response, response_error_handling, response_logger, get_dict
 import requests
 import json 
 
@@ -156,6 +156,6 @@ def bulk_irn(**kwargs):
     try:
         data = json.loads(kwargs.get('data'))
         for i in data:
-            frappe.enqueue("india_compliance.cleartax_integration.API.irn.generate_irn",**{'invoice':i})
+            frappe.enqueue("cleartax_integration.cleartax_integration.API.irn.generate_irn",**{'invoice':i})
     except Exception as e:
         frappe.logger('sfa_online').exception(e)

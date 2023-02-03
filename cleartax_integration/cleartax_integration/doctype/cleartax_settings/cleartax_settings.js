@@ -5,7 +5,7 @@ frappe.ui.form.on('Cleartax Settings', {
 	refresh: function(frm) {
 		// cur_frm.add_custom_button(__("PUSH TO CLEARTAX"), function () {
 		// 	frappe.call({
-		// 		method: "india_compliance.cleartax_integration.doctype.cleartax_settings.cleartax_settings.push_to_cleartax",
+		// 		method: "cleartax_integration.cleartax_integration.doctype.cleartax_settings.cleartax_settings.push_to_cleartax",
 		// 		args: {
 		// 			purchase_invoice: frm.selected_doc.purchase_invoices_from,
 		// 			sales_invoice: frm.selected_doc.sales_invoices_from
@@ -17,7 +17,7 @@ frappe.ui.form.on('Cleartax Settings', {
 		// });
 		// cur_frm.add_custom_button(__("SYNC SINV GST"), function () {
 		// 	frappe.call({
-		// 		method: "india_compliance.cleartax_integration.doctype.cleartax_settings.cleartax_settings.push_to_gst",
+		// 		method: "cleartax_integration.cleartax_integration.doctype.cleartax_settings.cleartax_settings.push_to_gst",
 		// 		callback: function (r) {
 		// 				frappe.msgprint("Documents Scheduled to be processed!")
 		// 			}
@@ -25,7 +25,7 @@ frappe.ui.form.on('Cleartax Settings', {
 		// }, __('GST'));
 		// cur_frm.add_custom_button(__("Retry Failed PINV"), function () {
 		// 	frappe.call({
-		// 		method: "india_compliance.cleartax_integration.doctype.cleartax_settings.cleartax_settings.retry_failed_pi",
+		// 		method: "cleartax_integration.cleartax_integration.doctype.cleartax_settings.cleartax_settings.retry_failed_pi",
 		// 		callback: function (r) {
 		// 				frappe.msgprint("Documents Scheduled to be processed!")
 		// 			}
@@ -33,7 +33,7 @@ frappe.ui.form.on('Cleartax Settings', {
 		// }, __('GST'));
 		// cur_frm.add_custom_button(__("Retry Failed SINV"), function () {
 		// 	frappe.call({
-		// 		method: "india_compliance.cleartax_integration.doctype.cleartax_settings.cleartax_settings.retry_faield_si",
+		// 		method: "cleartax_integration.cleartax_integration.doctype.cleartax_settings.cleartax_settings.retry_faield_si",
 		// 		callback: function (r) {
 		// 				frappe.msgprint("Documents Scheduled to be processed!")
 		// 			}
@@ -41,7 +41,7 @@ frappe.ui.form.on('Cleartax Settings', {
 		// }, __('GST'));
 		// cur_frm.add_custom_button(__("Sync PINV ID"), function () {
 		// 	frappe.call({
-		// 		method: "india_compliance.cleartax_integration.doctype.cleartax_settings.cleartax_settings.push_pi_gst",
+		// 		method: "cleartax_integration.cleartax_integration.doctype.cleartax_settings.cleartax_settings.push_pi_gst",
 		// 		callback: function (r) {
 		// 				frappe.msgprint("Documents Scheduled to be processed!")
 		// 			}

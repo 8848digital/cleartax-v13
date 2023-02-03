@@ -2,7 +2,7 @@ import frappe
 import requests
 import json
 from frappe import *
-from india_compliance.cleartax_integration.utils import success_response, error_response, response_error_handling, response_logger, get_dict
+from cleartax_integration.cleartax_integration.utils import success_response, error_response, response_error_handling, response_logger, get_dict
 
 
 @frappe.whitelist()
@@ -136,6 +136,6 @@ def bulk_purchase_gst(**kwargs):
     try:
         data = json.loads(kwargs.get('data'))
         for i in data:
-            frappe.enqueue("india_compliance.cleartax_integration.API.gst.create_gst_invoice",**{'invoice':i,'type':'PURCHASE'})
+            frappe.enqueue("cleartax_integration.cleartax_integration.API.gst.create_gst_invoice",**{'invoice':i,'type':'PURCHASE'})
     except Exception as e:
         frappe.logger('sfa_online').exception(e)
