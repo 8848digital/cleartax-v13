@@ -10,16 +10,11 @@ def generate_irn(**kwargs):
         invoice = frappe.get_doc('Sales Invoice',kwargs.get('invoice'))
         item_list = []
         gst_settings_accounts = frappe.get_all("GST Account",
-                filters={'company':invoice.company},
+                filters=[['company','=',invoice.company],['cgst_account','like',"%Output%"]],
                 fields=["cgst_account", "sgst_account", "igst_account", "cess_account"])
-        gst_round_off = frappe.get_value('GST Settings','round_off_gst_values')
-        #add batch
+        gst_round_off = frappe.db.get_single_value('GST Settings','round_off_gst_values')
         for row in invoice.items:
             item_list.append(get_dict('Item',row.item_code))
-        #     if row.batch_no:
-        #         item_list[-1]['batch_no'] = get_dict('Batch',row.batch_no)
-            
-        
         data = {
             'invoice': invoice.as_dict(),
             'customer': get_dict('Customer',invoice.customer),
@@ -45,7 +40,7 @@ def create_irn_request(data,inv):
         url+= "/api/method/cleartax.cleartax.API.irn.generate_irn"
         headers = {
             'sandbox': str(settings.sandbox),
-            'v13': 1,
+            'v13': '1',
             'Content-Type': 'application/json'
         }
         if settings.enterprise:
@@ -55,6 +50,7 @@ def create_irn_request(data,inv):
                 headers['token'] = settings.get_password('production_auth_token')
 
         payload = json.dumps(data, indent=4, sort_keys=False, default=str)
+        frappe.logger('cleartax').exception(payload)
         response = requests.request(
             "POST", url, headers=headers, data=payload) 
         response = response.json()['message']
@@ -119,7 +115,7 @@ def cancel_irn_request(inv,data):
         url = settings.host_url
         url+= "/api/method/cleartax.cleartax.API.irn.cancel_irn"
         headers = {
-            'v13': 1,
+            'v13': '1',
             'sandbox': str(settings.sandbox),
             'Content-Type': 'application/json'
         }

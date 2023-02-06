@@ -16,7 +16,7 @@ def create_gst_invoice(**kwargs):
             doctype = "Purchase Invoice"
         invoice = frappe.get_doc(doctype,kwargs.get('invoice'))
         item_list = []
-        gst_round_off = frappe.get_value('GST Settings','round_off_gst_values')
+        gst_round_off = frappe.db.get_single_value('GST Settings','round_off_gst_values')
         gst_settings_accounts = frappe.get_all("GST Account",
                 filters={'company':invoice.company},
                 fields=["cgst_account", "sgst_account", "igst_account", "cess_account"])
@@ -56,7 +56,7 @@ def gst_invoice_request(data,id,type):
         url = settings.host_url
         url+= "/api/method/cleartax.cleartax.API.gst."
         headers = {
-            'v13': 1,
+            'v13': '1',
             'sandbox': str(settings.sandbox),
             'Content-Type': 'application/json'
         }
@@ -73,6 +73,7 @@ def gst_invoice_request(data,id,type):
                 headers['token'] = settings.get_password('gst_sandbox_token')
         data = json.dumps(data, indent=4, sort_keys=False, default=str)
         response = requests.request("POST", url, headers=headers, data= data) 
+        frappe.logger('cleartax').exception(response.json())
         response = response.json()['message']
         if response['response'].get('error'):
             return error_response(response.get('error'))
@@ -99,7 +100,7 @@ def gst_cdn_request(data,id,type):
         url = settings.host_url
         url+= "/api/method/cleartax.cleartax.API.gst.create_gst_invoice"
         headers = {
-            'v13': 1,
+            'v13': '1',
             'sandbox': str(settings.sandbox),
             'Content-Type': 'application/json'
         }

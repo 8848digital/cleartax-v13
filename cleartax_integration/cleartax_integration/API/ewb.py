@@ -10,9 +10,9 @@ def generate_e_waybill_by_irn(**kwargs):
         transporter_details = None
         invoice = frappe.get_doc('Sales Invoice',kwargs.get('invoice'))
         item_list = []
-        gst_round_off = frappe.get_value('GST Settings','round_off_gst_values')
+        gst_round_off = frappe.db.get_single_value('GST Settings','round_off_gst_values')
         gst_settings_accounts = frappe.get_all("GST Account",
-                filters={'company':invoice.company},
+                filters=[['company','=',invoice.company],['cgst_account','like',"%Output%"]],
                 fields=["cgst_account", "sgst_account", "igst_account", "cess_account"])
         for row in invoice.items:
             item_list.append(get_dict('Item',row.item_code))
@@ -44,7 +44,7 @@ def create_ewb_request(inv,gstin,data):
         url = settings.host_url
         url+= "/api/method/cleartax.cleartax.API.ewb.generate_e_waybill_by_irn"
         headers = {
-            'v13': 1,
+            'v13': '1',
             'sandbox': str(settings.sandbox),
             'Content-Type': 'application/json'
         }
@@ -76,9 +76,9 @@ def ewb_without_irn(**kwargs):
     try:
         delivery_note = frappe.get_doc('Delivery Note',kwargs.get('delivery_note'))
         item_list = []
-        gst_round_off = frappe.get_value('GST Settings','round_off_gst_values')
+        gst_round_off = frappe.db.get_single_value('GST Settings','round_off_gst_values')
         gst_settings_accounts = frappe.get_all("GST Account",
-                filters={'company':delivery_note.company},
+                filters=[['company','=',invoice.company],['cgst_account','like',"%Output%"]],
                 fields=["cgst_account", "sgst_account", "igst_account", "cess_account"])
         for row in delivery_note.items:
             item_list.append(get_dict('Item',row.item_code))
@@ -104,7 +104,7 @@ def ewb_without_irn_request(data,delivery_note=None,subcontracting_challan=None)
         url = settings.host_url
         url+= "/api/method/cleartax.cleartax.API.ewb.ewb_without_irn"
         headers = {
-            'v13': 1,
+            'v13': '1',
             'sandbox': str(settings.sandbox),
             'Content-Type': 'application/json'
         }
@@ -192,7 +192,7 @@ def partb_request(data,dn=None,sc=None):
         url = settings.host_url
         url+= "/api/method/cleartax.cleartax.API.ewb.update_ewb_partb"
         headers = {
-            'v13': 1,
+            'v13': '1',
             'sandbox': str(settings.sandbox),
             'Content-Type': 'application/json'
         }
@@ -235,7 +235,7 @@ def cancel_ewb(**kwargs):
         url = settings.host_url
         url+= "/api/method/cleartax.cleartax.API.ewb.cancel_ewb"
         headers = {
-            'v13': 1,
+            'v13': '1',
             'sandbox': str(settings.sandbox),
             'Content-Type': 'application/json'
         }
@@ -266,7 +266,7 @@ def cancel_ewb_dn(**kwargs):
         url = settings.host_url
         url+= "/api/method/cleartax.cleartax.API.ewb.cancel_ewb"
         headers = {
-            'v13': 1,
+            'v13': '1',
             'sandbox': str(settings.sandbox),
             'Content-Type': 'application/json'
         }
@@ -297,7 +297,7 @@ def cancel_ewb_sc(**kwargs):
         url = settings.host_url
         url+= "/api/method/cleartax.cleartax.API.ewb.cancel_ewb"
         headers = {
-            'v13': 1,
+            'v13': '1',
             'sandbox': str(settings.sandbox),
             'Content-Type': 'application/json'
         }
